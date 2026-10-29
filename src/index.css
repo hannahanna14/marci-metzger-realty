@@ -77,6 +77,18 @@ ul { list-style: none; }
   background: var(--clr-gold);
 }
 
+#about .section-label,
+#gallery .section-label,
+#contact .section-label {
+  color: #80613a;
+}
+
+#about .section-label::after,
+#gallery .section-label::after,
+#contact .section-label::after {
+  background: #80613a;
+}
+
 .section-title {
   font-family: var(--font-serif);
   font-size: clamp(2rem, 4vw, 2.8rem);
@@ -143,7 +155,7 @@ ul { list-style: none; }
 .navbar__links a:hover,
 .navbar__links a.active {
   border-color: var(--clr-gold);
-  color: var(--clr-gold);
+  color: #e4c99c;
 }
 
 /* Hamburger */
@@ -325,6 +337,16 @@ ul { list-style: none; }
 /* =====================================================
    SEARCH BAR — sits inside the hero above the stats strip
    ===================================================== */
+.search-bar__heading {
+  color: var(--clr-white);
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0 auto 1rem;
+  text-align: center;
+}
+
 .search-bar-section {
   padding: 0 1.5rem;
   position: relative;
@@ -362,6 +384,7 @@ ul { list-style: none; }
   text-transform: uppercase;
   color: var(--clr-gray);
   margin-bottom: 0.2rem;
+  text-align: left;
 }
 
 .search-bar__field select,
@@ -426,7 +449,7 @@ ul { list-style: none; }
   background: var(--clr-white);
   border-radius: 0 0 8px 8px;
   box-shadow: 0 8px 40px rgba(0,0,0,0.12);
-  padding: 1rem 2rem;
+  padding: 1.1rem 1.5rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
@@ -435,7 +458,24 @@ ul { list-style: none; }
   margin-top: -4px;
 }
 
-.more-filters select {
+.more-filters__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+  text-align: left;
+}
+
+.more-filters__field label {
+  color: var(--clr-gray);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.more-filters select,
+.more-filters input {
   width: 100%;
   border: 1px solid var(--clr-gray-lt);
   border-radius: 4px;
@@ -447,6 +487,8 @@ ul { list-style: none; }
   outline: none;
   cursor: pointer;
 }
+
+.more-filters input { cursor: text; }
 
 /* =====================================================
    STATS STRIP
@@ -488,6 +530,7 @@ ul { list-style: none; }
   font-weight: 700;
   color: var(--clr-white);
   line-height: 1.1;
+  font-variant-numeric: lining-nums;
 }
 
 .stat-item__number em {
@@ -628,6 +671,14 @@ ul { list-style: none; }
   color: var(--clr-dark);
 }
 
+.about-card__text {
+  margin-top: 0.5rem;
+  color: var(--clr-gray);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  text-align: left;
+}
+
 /* =====================================================
    GALLERY
    ===================================================== */
@@ -650,25 +701,29 @@ ul { list-style: none; }
 .gallery__view-all {
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--clr-forest);
+  color: var(--clr-white);
   display: flex;
   align-items: center;
   gap: 0.3rem;
-  transition: gap var(--trans);
 }
 
-.gallery__view-all:hover { gap: 0.6rem; color: var(--clr-gold); }
+.gallery__view-all:hover { gap: 0.6rem; color: var(--clr-white); }
 
 .gallery__grid {
   max-width: var(--max-w);
   margin-inline: auto;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: auto auto;
+  grid-template-columns: repeat(4, 1fr);
   gap: 0.5rem;
 }
 
 .gallery__item {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
   overflow: hidden;
   border-radius: 4px;
   cursor: pointer;
@@ -676,8 +731,7 @@ ul { list-style: none; }
   position: relative;
 }
 
-.gallery__item:nth-child(1) { grid-column: span 2; aspect-ratio: auto; }
-.gallery__item:nth-child(2) { grid-column: span 2; }
+.gallery__item:nth-child(1) { grid-column: span 2; aspect-ratio: 8/3; }
 
 .gallery__item img {
   width: 100%;
@@ -846,6 +900,12 @@ ul { list-style: none; }
   line-height: 1.7;
 }
 
+.service-card__tagline {
+  font-size: 0.92rem;
+  color: var(--clr-gray);
+  line-height: 1.7;
+}
+
 /* =====================================================
    CONTACT
    ===================================================== */
@@ -890,6 +950,13 @@ ul { list-style: none; }
   flex-direction: column;
   gap: 1rem;
   margin-top: 1.5rem;
+}
+
+.contact__form-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--clr-dark);
 }
 
 .form-row {
@@ -1115,7 +1182,6 @@ ul { list-style: none; }
   }
 
   .gallery__item:nth-child(1) { grid-column: span 2; }
-  .gallery__item:nth-child(2) { grid-column: 1; }
 
   .search-bar {
     flex-wrap: wrap;
@@ -1151,6 +1217,7 @@ ul { list-style: none; }
 
   /* Hero */
   .hero__title { font-size: clamp(2.4rem, 11vw, 3.5rem); }
+  .hero__bg { background-position: 62% center; }
 
   /* Search bar stacked */
   .search-bar {
@@ -1162,12 +1229,15 @@ ul { list-style: none; }
   .search-bar__field {
     flex: unset;
     width: 100%;
+    align-items: stretch;
     border-right: none;
     border-bottom: 1px solid var(--clr-gray-lt);
     padding: 0.6rem 0.25rem;
   }
 
   .search-bar__field:last-of-type { border-bottom: none; }
+  .search-bar__field label,
+  .search-bar__field select { text-align: left; }
 
   .search-bar__actions {
     width: 100%;
@@ -1206,9 +1276,8 @@ ul { list-style: none; }
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .gallery__item:nth-child(1),
-  .gallery__item:nth-child(2) {
-    grid-column: span 1;
+  .gallery__item:nth-child(1) {
+    grid-column: span 2;
     aspect-ratio: 4/3;
   }
 
@@ -1222,17 +1291,22 @@ ul { list-style: none; }
   .footer__inner { flex-direction: column; text-align: center; }
 
   /* More-filters grid */
-  .more-filters { grid-template-columns: 1fr; }
+  .more-filters {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
 
   /* Sticky call btn */
-  .sticky-call { display: inline-flex; }
+  .sticky-call.visible { display: inline-flex; }
+}
+
+@media (max-width: 768px) {
+  .footer { padding-bottom: 5.5rem; }
 }
 
 /* =====================================================
    RESPONSIVE — DESKTOP WIDE (1280px+)
    ===================================================== */
 @media (min-width: 1280px) {
-  .gallery__grid {
-    grid-template-columns: repeat(5, 1fr);
-  }
+  .gallery__grid { grid-template-columns: repeat(4, 1fr); }
 }

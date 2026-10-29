@@ -1,9 +1,20 @@
 import { useState, useEffect, useCallback } from 'react'
 
-// 11 gallery images — user will drop their own into public/images/gallery/
-const IMAGES = Array.from({ length: 11 }, (_, i) => ({
-  src:  `/images/gallery/gallery-${i + 1}.jpg`,
-  alt:  `Property photo ${i + 1}`,
+const IMAGES = [
+  'Aerial view of a residential community with tennis courts and mountain views',
+  'Homes beside a golf course and pond with desert mountains in the distance',
+  'Aerial view of a golf course community, mountains, and swimming pools',
+  'Living room with a red armchair and large windows facing a desert garden',
+  'Community tennis courts with homes and desert mountains in the distance',
+  'Home with a backyard pool and mountain views',
+  'Aerial view of a residential neighborhood and mountain range',
+  'White country-style home with a wide lawn and mature trees',
+  'Contemporary brick homes along a neighborhood street',
+  'Aerial view of suburban homes and neighborhood streets',
+  'Single-family home with a green lawn and mature trees',
+].map((alt, i) => ({
+  src: `/images/gallery/gallery-${i + 1}.jpg`,
+  alt,
 }))
 
 function ZoomIcon() {
@@ -47,7 +58,7 @@ export default function Gallery() {
           <h2 className="section-title">Gallery</h2>
         </div>
         <button
-          className="gallery__view-all"
+          className="btn btn-primary gallery__view-all"
           onClick={() => setLightboxIdx(0)}
           aria-label="View all photos"
         >
@@ -62,9 +73,8 @@ export default function Gallery() {
             className="gallery__item"
             onClick={() => setLightboxIdx(idx)}
             aria-label={`Open ${img.alt}`}
-            style={{ all: 'unset', display: 'block', cursor: 'pointer' }}
           >
-            <div className="gallery__item" style={{ all: 'unset' }}>
+            <div>
               <div style={{ position: 'relative', width: '100%', height: '100%', borderRadius: '4px', overflow: 'hidden', aspectRatio: '4/3', display: 'block' }}>
                 <img src={img.src} alt={img.alt} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.45s ease', display: 'block' }} />
                 <div className="gallery__item-overlay">

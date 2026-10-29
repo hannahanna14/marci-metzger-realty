@@ -9,6 +9,8 @@ const NAV_LINKS = [
   { label: 'Contact',  href: '#contact' },
 ]
 
+const OBSERVED_SECTION_IDS = ['home', 'about', 'gallery', 'services', 'contact']
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -22,23 +24,29 @@ export default function Navbar() {
 
   // Highlight active section on scroll
   useEffect(() => {
-    const ids = NAV_LINKS.map(l => l.href.slice(1))
+    const sections = OBSERVED_SECTION_IDS
+      .map(id => document.getElementById(id))
+      .filter(Boolean)
+
     const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(e => { if (e.isIntersecting) setActive('#' + e.target.id) })
+      () => {
+        const activeLine = window.innerHeight * 0.4
+        const activeSection = sections.find(section => {
+          const bounds = section.getBoundingClientRect()
+          return bounds.top <= activeLine && bounds.bottom > activeLine
+        })
+
+        if (activeSection) setActive(`#${activeSection.id}`)
       },
-      { rootMargin: '-40% 0px -55% 0px' }
+      { rootMargin: '-35% 0px -55% 0px' }
     )
-    ids.forEach(id => {
-      const el = document.getElementById(id)
-      if (el) observer.observe(el)
-    })
+    sections.forEach(section => observer.observe(section))
     return () => observer.disconnect()
   }, [])
 
   const handleLinkClick = (href) => {
     setMenuOpen(false)
-    setActive(href)
+    setActive(href === '#listings' ? '#home' : href)
   }
 
   return (

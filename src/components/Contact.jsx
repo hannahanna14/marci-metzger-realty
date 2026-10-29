@@ -19,24 +19,12 @@ const ClockIcon = () => (
   </svg>
 )
 
-const ArrowIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-  </svg>
-)
-
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [sent, setSent] = useState(false)
 
-  const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
-
-  const handleSubmit = e => {
-    e.preventDefault()
-    // Simple mailto fallback — replace with a real form service (Formspree, etc.) for production
-    const subject  = encodeURIComponent('Website Inquiry from ' + form.name)
-    const body     = encodeURIComponent(form.message + '\n\nFrom: ' + form.name + ' <' + form.email + '>')
-    window.location.href = `mailto:marci@marcimetzger.com?subject=${subject}&body=${body}`
+  const handleSubmit = event => {
+    event.preventDefault()
+    // Sending is simulated because this site is static.
     setSent(true)
   }
 
@@ -49,51 +37,36 @@ export default function Contact() {
           <h2 className="section-title">Call or Visit</h2>
 
           {sent ? (
-            <div style={{ marginTop: '2rem', padding: '1.5rem', background: '#f0f5ee', borderRadius: '6px', borderLeft: '4px solid #4a5a3a' }}>
+            <div
+              role="status"
+              style={{ marginTop: '2rem', padding: '1.5rem', background: '#f0f5ee', borderRadius: '6px', borderLeft: '4px solid #4a5a3a' }}
+            >
               <p style={{ fontWeight: 600 }}>Thank you! Your message has been sent.</p>
-              <p style={{ fontSize: '0.9rem', color: '#6b6b6b', marginTop: '0.3rem' }}>Marci will be in touch soon.</p>
             </div>
           ) : (
-            <form className="contact__form" onSubmit={handleSubmit} noValidate>
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="cf-name">Name *</label>
-                  <input
-                    id="cf-name"
-                    name="name"
-                    type="text"
-                    placeholder="Your name"
-                    required
-                    value={form.name}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="cf-email">Email *</label>
-                  <input
-                    id="cf-email"
-                    name="email"
-                    type="email"
-                    placeholder="you@email.com"
-                    required
-                    value={form.email}
-                    onChange={handleChange}
-                  />
-                </div>
+            <form className="contact__form" onSubmit={handleSubmit}>
+              <h3 className="contact__form-title">Send Message</h3>
+              <div className="form-group">
+                <label htmlFor="cf-name">Name</label>
+                <input
+                  id="cf-name"
+                  name="name"
+                  type="text"
+                  autoComplete="name"
+                />
               </div>
               <div className="form-group">
-                <label htmlFor="cf-message">Message *</label>
-                <textarea
-                  id="cf-message"
-                  name="message"
-                  placeholder="How can Marci help you?"
+                <label htmlFor="cf-email">Email *</label>
+                <input
+                  id="cf-email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
                   required
-                  value={form.message}
-                  onChange={handleChange}
                 />
               </div>
               <button type="submit" className="btn-submit">
-                Send Message <ArrowIcon />
+                Send
               </button>
             </form>
           )}
@@ -109,9 +82,14 @@ export default function Contact() {
             <div className="contact-info-item__icon"><PinIcon /></div>
             <div className="contact-info-item__text">
               <div className="contact-info-item__label">Address</div>
-              <div className="contact-info-item__value">Pahrump, NV</div>
+              <div className="contact-info-item__value">3190 HW-160, Suite F, Pahrump, Nevada 89048</div>
               <div className="contact-info-item__sub">
-                <a href="https://maps.google.com/?q=Pahrump,NV" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--clr-forest)', fontSize: '0.82rem' }}>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=3190+HW-160%2C+Suite+F%2C+Pahrump%2C+Nevada+89048"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: 'var(--clr-forest)', fontSize: '0.82rem' }}
+                >
                   Get directions →
                 </a>
               </div>
@@ -123,7 +101,7 @@ export default function Contact() {
             <div className="contact-info-item__text">
               <div className="contact-info-item__label">Phone</div>
               <div className="contact-info-item__value">
-                <a href="tel:2069196886">206-919-6886</a>
+                <a href="tel:2069196886">(206) 919-6886</a>
               </div>
               <div className="contact-info-item__sub">Call or text</div>
             </div>
@@ -133,15 +111,15 @@ export default function Contact() {
             <div className="contact-info-item__icon"><ClockIcon /></div>
             <div className="contact-info-item__text">
               <div className="contact-info-item__label">Hours</div>
-              <div className="contact-info-item__value">8:00 AM – 7:00 PM</div>
-              <div className="contact-info-item__sub">7 days a week</div>
+              <div className="contact-info-item__value">Open daily, 8:00 am to 7:00 pm</div>
+              <div className="contact-info-item__sub">Appointments outside office hours available upon request. Just call!</div>
             </div>
           </div>
 
           {/* Embedded map */}
           <div className="map-embed">
             <iframe
-              title="Pahrump NV map"
+              title="Map of Pahrump, Nevada"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52978.09014870736!2d-115.99741645!3d36.20829895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c96a0a7c0b3db5%3A0x8b4a63a7b1c2d5e3!2sPahrump%2C%20NV!5e0!3m2!1sen!2sus!4v1698600000000!5m2!1sen!2sus"
               allowFullScreen=""
               loading="lazy"

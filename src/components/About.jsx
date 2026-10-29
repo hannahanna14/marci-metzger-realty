@@ -24,9 +24,21 @@ const UsersIcon = () => (
 )
 
 const CARDS = [
-  { Icon: TrophyIcon, title: 'Top Sales\n5 Years' },
-  { Icon: HomeIcon,   title: "Don't Just\nList It" },
-  { Icon: UsersIcon,  title: 'Guide to\nBuyers' },
+  {
+    Icon: TrophyIcon,
+    title: 'Top Residential Sales Last 5 Years',
+    text: 'We helped nearly 90 clients in 2021, and closed 28.5 million in sales! Our team works hard everyday to grow and learn, so that we may continue to excel in our market. Our clients deserve our best, & we want to make sure our best is better every year.',
+  },
+  {
+    Icon: HomeIcon,
+    title: "Don't Just List it... Get it SOLD!",
+    text: 'Get it SOLD! We exhaust every avenue to ensure our listings are at the fingertips of every possible buyer, getting you top dollar for your home.',
+  },
+  {
+    Icon: UsersIcon,
+    title: 'Guide to Buyers',
+    text: 'Nobody knows the market like we do. Enjoy having a pro at your service. Market analysis, upgrades lists, contractors on speed dial, & more!',
+  },
 ]
 
 export default function About() {
@@ -58,7 +70,6 @@ export default function About() {
           </a>
 
           <p className="about__intro-head">Get It Sold</p>
-          {/* NOTE: Fixed "you hard-earned" typo → "your hard-earned" */}
           <p className="about__bio">
             Your trusted local expert in Pahrump, helping you buy, sell, and find the perfect
             place to call home. With nearly three decades of experience, Marci brings the knowledge,
@@ -66,16 +77,13 @@ export default function About() {
           </p>
 
           <div className="about__cards">
-            {CARDS.map(({ Icon, title }) => (
+            {CARDS.map(({ Icon, title, text }) => (
               <div className="about-card" key={title}>
                 <div className="about-card__icon">
                   <Icon />
                 </div>
-                <p className="about-card__title">
-                  {title.split('\n').map((line, i) => (
-                    <span key={i}>{line}{i === 0 && <br />}</span>
-                  ))}
-                </p>
+                <h3 className="about-card__title">{title}</h3>
+                <p className="about-card__text">{text}</p>
               </div>
             ))}
           </div>

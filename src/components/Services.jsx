@@ -26,21 +26,20 @@ const SERVICES = [
   {
     Icon: HomeIcon,
     title: 'Real Estate Done Right',
-    // heading kept from original; distinct from the two "Commercial & Residential" dupes
-    text: 'Personalized service, clear guidance, and results you can trust. Marci is with you every step — from the first showing to the closing table.',
+    tagline: 'Personalized service, clear guidance, and results you can trust. Marci is with you every step — from the first showing to the closing table.',
+    text: 'Nervous about your property adventure? Don’t be. Whether you\'re getting ready to buy or sell your residence, looking at investment properties, or just curious about the markets, our team ensures you get the best experience possible!',
   },
   {
     Icon: BuildingIcon,
-    // DESIGN NOTE: Original site had two sections both titled "Commercial & Residential".
-    // Renamed the first to "Commercial & Residential" and the second to "Invest in Your Future"
-    // so each service has its own unique identity while preserving all original body copy.
     title: 'Commercial & Residential',
-    text: 'From dream homes to investment properties, we\'ve got you covered. Whether you\'re buying your first home or expanding your portfolio, expertise matters.',
+    tagline: 'From dream homes to investment properties, we\'ve got you covered. Whether you\'re buying your first home or expanding your portfolio, expertise matters.',
+    text: 'Large or small, condo or mansion, we can find it and get at the price that\'s right. Fixer-uppers? Luxury? We can help with all of it! We live, work, and play in this community. Happy to help you find where to put your hard-earned dollars.',
   },
   {
     Icon: ShieldIcon,
     title: 'Rely on Expertise',
-    text: 'Local knowledge, market insight, and years of experience. With nearly three decades in the Pahrump market, Marci knows how to get you the best outcome.',
+    tagline: 'Local knowledge, market insight, and years of experience. With nearly three decades in the Pahrump market, Marci knows how to get you the best outcome.',
+    text: 'If you have questions about affordability, credit, and loan options, trust us to connect you with the right people to get the answers you need in a timely fashion. We make sure you feel confident and educated every step of the way.',
   },
 ]
 
@@ -52,12 +51,13 @@ export default function Services() {
         <h2 className="section-title">Our Services</h2>
 
         <div className="services__grid">
-          {SERVICES.map(({ Icon, title, text }) => (
+          {SERVICES.map(({ Icon, title, tagline, text }) => (
             <div className="service-card" key={title}>
               <div className="service-card__icon-wrap">
                 <Icon />
               </div>
               <h3 className="service-card__title">{title}</h3>
+              <p className="service-card__tagline">{tagline}</p>
               <p className="service-card__text">{text}</p>
             </div>
           ))}
