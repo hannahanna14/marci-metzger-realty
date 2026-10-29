@@ -5,6 +5,7 @@ import About from './components/About'
 import Gallery from './components/Gallery'
 import Services from './components/Services'
 import Contact from './components/Contact'
+import Affiliations from './components/Affiliations'
 import Footer from './components/Footer'
 import StickyCall from './components/StickyCall'
 
@@ -20,6 +21,7 @@ export default function App() {
         <Services />
         <Contact />
       </main>
+      <Affiliations />
       <Footer />
       <StickyCall />
     </>
